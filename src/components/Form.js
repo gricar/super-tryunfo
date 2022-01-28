@@ -1,8 +1,23 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Input from './Input';
 
 class Form extends React.Component {
   render() {
+    const {
+      cardName,
+      cardDescription,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardImage,
+      cardRare,
+      cardTrunfo,
+      // hasTrunfo,
+      isSaveButtonDisabled,
+      onInputChange,
+      onSaveButtonClick,
+    } = this.props;
     return (
       <form>
         <h2>Adicionar nova carta</h2>
@@ -10,20 +25,28 @@ class Form extends React.Component {
           description="Nome"
           name="cardName"
           testid="name-input"
+          value={ cardName }
+          onInputChange={ onInputChange }
         />
 
-        <Input
-          description="Descrição"
-          type="textarea"
-          name="descriptionCard"
-          testid="description-input"
-        />
+        <label htmlFor="descriptionCard">
+          Descrição
+          <textarea
+            id="descriptionCard"
+            name="descriptionCard"
+            data-testid="description-input"
+            value={ cardDescription }
+            onChange={ onInputChange }
+          />
+        </label>
 
         <Input
           description="Atributo 1"
           type="number"
           name="atributo1"
           testid="attr1-input"
+          value={ cardAttr1 }
+          onInputChange={ onInputChange }
         />
 
         <Input
@@ -31,6 +54,8 @@ class Form extends React.Component {
           type="number"
           name="atributo2"
           testid="attr2-input"
+          value={ cardAttr2 }
+          onInputChange={ onInputChange }
         />
 
         <Input
@@ -38,43 +63,72 @@ class Form extends React.Component {
           type="number"
           name="atributo3"
           testid="attr3-input"
+          value={ cardAttr3 }
+          onInputChange={ onInputChange }
         />
 
         <Input
           description="Imagem"
           name="cardImage"
           testid="image-input"
+          value={ cardImage }
+          onInputChange={ onInputChange }
         />
 
         <label htmlFor="raridade">
           Raridade:
-          <select name="raridade" defaultValue="" data-testid="rare-input">
+          <select
+            name="raridade"
+            defaultValue=""
+            data-testid="rare-input"
+            value={ cardRare }
+            onChange={ onInputChange }
+          >
             <option>normal</option>
             <option>raro</option>
             <option>muito raro</option>
           </select>
         </label>
 
-        <div>
-          <Input
+        <label htmlFor="cardTrunfo">
+          <input
             type="checkbox"
+            id="cardTrunfo"
             name="cardTrunfo"
-            testid="trunfo-input"
+            data-testid="trunfo-input"
+            checked={ cardTrunfo }
+            onChange={ onInputChange }
           />
-          <h3>Carta Super Trunfo</h3>
-        </div>
+          Carta Super Trunfo
+        </label>
 
-        <Input
+        <input
           type="button"
+          id="cardSave"
           name="cardSave"
-          testid="save-button"
+          data-testid="save-button"
           value="Salvar"
+          disabled={ isSaveButtonDisabled }
+          onClick={ onSaveButtonClick }
         />
-
       </form>
-
     );
   }
 }
 
 export default Form;
+
+Form.propTypes = {
+  cardName: PropTypes.string.isRequired,
+  cardDescription: PropTypes.string.isRequired,
+  cardAttr1: PropTypes.string.isRequired,
+  cardAttr2: PropTypes.string.isRequired,
+  cardAttr3: PropTypes.string.isRequired,
+  cardImage: PropTypes.string.isRequired,
+  cardRare: PropTypes.string.isRequired,
+  cardTrunfo: PropTypes.bool.isRequired,
+  // hasTrunfo: PropTypes.bool.isRequired,
+  isSaveButtonDisabled: PropTypes.bool.isRequired,
+  onInputChange: PropTypes.func.isRequired,
+  onSaveButtonClick: PropTypes.func.isRequired,
+};
