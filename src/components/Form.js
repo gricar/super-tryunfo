@@ -29,11 +29,11 @@ class Form extends React.Component {
           onInputChange={ onInputChange }
         />
 
-        <label htmlFor="descriptionCard">
+        <label htmlFor="cardDescription">
           Descrição
           <textarea
-            id="descriptionCard"
-            name="descriptionCard"
+            id="cardDescription"
+            name="cardDescription"
             data-testid="description-input"
             value={ cardDescription }
             onChange={ onInputChange }
@@ -43,7 +43,7 @@ class Form extends React.Component {
         <Input
           description="Atributo 1"
           type="number"
-          name="atributo1"
+          name="cardAttr1"
           testid="attr1-input"
           value={ cardAttr1 }
           onInputChange={ onInputChange }
@@ -52,7 +52,7 @@ class Form extends React.Component {
         <Input
           description="Atributo 2"
           type="number"
-          name="atributo2"
+          name="cardAttr2"
           testid="attr2-input"
           value={ cardAttr2 }
           onInputChange={ onInputChange }
@@ -61,7 +61,7 @@ class Form extends React.Component {
         <Input
           description="Atributo 3"
           type="number"
-          name="atributo3"
+          name="cardAttr3"
           testid="attr3-input"
           value={ cardAttr3 }
           onInputChange={ onInputChange }
@@ -78,7 +78,7 @@ class Form extends React.Component {
         <label htmlFor="raridade">
           Raridade:
           <select
-            name="raridade"
+            name="cardRare"
             defaultValue=""
             data-testid="rare-input"
             value={ cardRare }
