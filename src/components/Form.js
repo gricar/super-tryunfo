@@ -75,18 +75,19 @@ class Form extends React.Component {
           onInputChange={ onInputChange }
         />
 
-        <label htmlFor="raridade">
+        <label htmlFor="cardRare">
           Raridade:
           <select
             name="cardRare"
+            id="cardRare"
             defaultValue=""
             data-testid="rare-input"
             value={ cardRare }
             onChange={ onInputChange }
           >
-            <option>normal</option>
-            <option>raro</option>
-            <option>muito raro</option>
+            <option value="normal">normal</option>
+            <option value="raro">raro</option>
+            <option value="muito raro">muito raro</option>
           </select>
         </label>
 

@@ -8,23 +8,45 @@ class App extends React.Component {
     this.state = {
       cardName: '',
       cardDescription: '',
-      cardAttr1: '',
-      cardAttr2: '',
-      cardAttr3: '',
+      cardAttr1: 0,
+      cardAttr2: 0,
+      cardAttr3: 0,
       cardImage: '',
       cardRare: 'normal',
       cardTrunfo: false,
+      isSaveButtonDisabled: true,
     };
 
     this.onInputChange = this.onInputChange.bind(this);
+    this.enableBtn = this.enableBtn.bind(this);
   }
 
   onInputChange({ target }) {
     const { name } = target;
+    this.enableBtn();
     const value = target.type === 'checkbox' ? target.checked : target.value;
     this.setState({
       [name]: value,
     });
+  }
+
+  enableBtn() {
+    const atr1Int = parseInt(cardAttr1.value, 10);
+    const atr2Int = parseInt(cardAttr2.value, 10);
+    const atr3Int = parseInt(cardAttr3.value, 10);
+    const maxValue = 90;
+    const maxSumValue = 210;
+    if (
+      cardName.value.length > 0
+      && cardDescription.value.length > 0
+      && cardImage.value.length > 0
+      && cardRare.value.length > 0
+      && atr1Int >= 0 && atr1Int <= maxValue
+      && atr2Int >= 0 && atr2Int <= maxValue
+      && atr3Int >= 0 && atr3Int <= maxValue
+      && atr1Int + atr2Int + atr3Int <= maxSumValue
+    ) this.setState({ isSaveButtonDisabled: false });
+    else this.setState({ isSaveButtonDisabled: true });
   }
 
   render() {
@@ -37,6 +59,7 @@ class App extends React.Component {
       cardImage,
       cardRare,
       cardTrunfo,
+      isSaveButtonDisabled,
     } = this.state;
     return (
       <div>
@@ -50,6 +73,7 @@ class App extends React.Component {
           cardImage={ cardImage }
           cardRare={ cardRare }
           cardTrunfo={ cardTrunfo }
+          isSaveButtonDisabled={ isSaveButtonDisabled }
           onInputChange={ this.onInputChange }
         />
         <hr />
@@ -63,6 +87,7 @@ class App extends React.Component {
           cardRare={ cardRare }
           cardTrunfo={ cardTrunfo }
         />
+
       </div>
     );
   }
