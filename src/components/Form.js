@@ -18,6 +18,18 @@ class Form extends React.Component {
       onInputChange,
       onSaveButtonClick,
     } = this.props;
+
+    const cardToSave = {
+      cardName,
+      cardDescription,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardImage,
+      cardRare,
+      cardTrunfo,
+    };
+
     return (
       <form>
         <h2>Adicionar nova carta</h2>
@@ -103,15 +115,14 @@ class Form extends React.Component {
           Carta Super Trunfo
         </label>
 
-        <input
-          type="button"
-          id="cardSave"
-          name="cardSave"
+        <button
+          type="submit"
           data-testid="save-button"
-          value="Salvar"
           disabled={ isSaveButtonDisabled }
-          onClick={ onSaveButtonClick }
-        />
+          onClick={ (event) => onSaveButtonClick(event, cardToSave) }
+        >
+          Salvar
+        </button>
       </form>
     );
   }
