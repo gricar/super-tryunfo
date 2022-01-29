@@ -19,8 +19,9 @@ class App extends React.Component {
     };
 
     this.onInputChange = this.onInputChange.bind(this);
-    this.enableBtn = this.enableBtn.bind(this);
+    this.removeCard = this.removeCard.bind(this);
     this.onSaveButtonClick = this.onSaveButtonClick.bind(this);
+    this.enableBtn = this.enableBtn.bind(this);
   }
 
   onInputChange({ target }) {
@@ -45,6 +46,14 @@ class App extends React.Component {
       cardRare: 'normal',
       cardTrunfo: false,
     }));
+  }
+
+  removeCard(cardNameToRemove) {
+    const { packOfCards } = this.state;
+
+    this.setState({
+      packOfCards: packOfCards.filter(({ cardName }) => cardName !== cardNameToRemove),
+    });
   }
 
   enableBtn() {
@@ -110,17 +119,25 @@ class App extends React.Component {
         <section>
           {
             packOfCards.map((card, index) => (
-              <Card
-                key={ index }
-                cardName={ card.cardName }
-                cardDescription={ card.cardDescription }
-                cardAttr1={ card.cardAttr1 }
-                cardAttr2={ card.cardAttr2 }
-                cardAttr3={ card.cardAttr3 }
-                cardImage={ card.cardImage }
-                cardRare={ card.cardRare }
-                cardTrunfo={ card.cardTrunfo }
-              />
+              <div key={ index }>
+                <Card
+                  cardName={ card.cardName }
+                  cardDescription={ card.cardDescription }
+                  cardAttr1={ card.cardAttr1 }
+                  cardAttr2={ card.cardAttr2 }
+                  cardAttr3={ card.cardAttr3 }
+                  cardImage={ card.cardImage }
+                  cardRare={ card.cardRare }
+                  cardTrunfo={ card.cardTrunfo }
+                />
+                <button
+                  type="button"
+                  data-testid="delete-button"
+                  onClick={ () => this.removeCard(card.cardName) }
+                >
+                  Excluir
+                </button>
+              </div>
             ))
           }
         </section>
