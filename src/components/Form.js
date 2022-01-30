@@ -102,21 +102,23 @@ class Form extends React.Component {
           </select>
         </label>
 
-        { hasTrunfo && <p>Você já tem um Super Trunfo em seu baralho</p> }
-
-        { !hasTrunfo && (
-          <label htmlFor="cardTrunfo">
-            <input
-              type="checkbox"
-              id="cardTrunfo"
-              name="cardTrunfo"
-              data-testid="trunfo-input"
-              checked={ cardTrunfo }
-              onChange={ onInputChange }
-            />
-            Carta Super Trunfo
-          </label>
-        )}
+        {
+          hasTrunfo
+            ? <p>Você já tem um Super Trunfo em seu baralho</p>
+            : (
+              <label htmlFor="cardTrunfo">
+                <input
+                  type="checkbox"
+                  id="cardTrunfo"
+                  name="cardTrunfo"
+                  data-testid="trunfo-input"
+                  checked={ cardTrunfo }
+                  onChange={ onInputChange }
+                />
+                Carta Super Trunfo
+              </label>
+            )
+        }
 
         <button
           type="submit"
