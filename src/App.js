@@ -15,6 +15,7 @@ class App extends React.Component {
       cardRare: 'normal',
       cardTrunfo: false,
       isSaveButtonDisabled: true,
+      hasTrunfo: false,
       packOfCards: [],
     };
 
@@ -22,6 +23,7 @@ class App extends React.Component {
     this.removeCard = this.removeCard.bind(this);
     this.onSaveButtonClick = this.onSaveButtonClick.bind(this);
     this.enableBtn = this.enableBtn.bind(this);
+    this.trunfoCard = this.trunfoCard.bind(this);
   }
 
   onInputChange({ target }) {
@@ -46,14 +48,15 @@ class App extends React.Component {
       cardRare: 'normal',
       cardTrunfo: false,
     }));
+    this.trunfoCard();
   }
 
-  removeCard(cardNameToRemove) {
+  removeCard({ cardName, cardTrunfo }) {
     const { packOfCards } = this.state;
-
     this.setState({
-      packOfCards: packOfCards.filter(({ cardName }) => cardName !== cardNameToRemove),
+      packOfCards: packOfCards.filter((card) => card.cardName !== cardName),
     });
+    if (cardTrunfo) this.setState({ hasTrunfo: false });
   }
 
   enableBtn() {
@@ -75,6 +78,11 @@ class App extends React.Component {
     else this.setState({ isSaveButtonDisabled: true });
   }
 
+  trunfoCard() {
+    const { cardTrunfo } = this.state;
+    if (cardTrunfo) this.setState({ hasTrunfo: true });
+  }
+
   render() {
     const {
       cardName,
@@ -85,6 +93,7 @@ class App extends React.Component {
       cardImage,
       cardRare,
       cardTrunfo,
+      hasTrunfo,
       isSaveButtonDisabled,
       packOfCards,
     } = this.state;
@@ -100,6 +109,7 @@ class App extends React.Component {
           cardImage={ cardImage }
           cardRare={ cardRare }
           cardTrunfo={ cardTrunfo }
+          hasTrunfo={ hasTrunfo }
           isSaveButtonDisabled={ isSaveButtonDisabled }
           onInputChange={ this.onInputChange }
           onSaveButtonClick={ this.onSaveButtonClick }
@@ -133,7 +143,7 @@ class App extends React.Component {
                 <button
                   type="button"
                   data-testid="delete-button"
-                  onClick={ () => this.removeCard(card.cardName) }
+                  onClick={ () => this.removeCard(card) }
                 >
                   Excluir
                 </button>

@@ -35,13 +35,15 @@ class Card extends Component {
 
 export default Card;
 
+const { string, number, bool } = PropTypes;
+
 Card.propTypes = {
-  cardName: PropTypes.string.isRequired,
-  cardDescription: PropTypes.string.isRequired,
-  cardAttr1: PropTypes.string.isRequired,
-  cardAttr2: PropTypes.string.isRequired,
-  cardAttr3: PropTypes.string.isRequired,
-  cardImage: PropTypes.string.isRequired,
-  cardRare: PropTypes.string.isRequired,
-  cardTrunfo: PropTypes.bool.isRequired,
+  cardName: string.isRequired,
+  cardDescription: string.isRequired,
+  cardAttr1: number.isRequired,
+  cardAttr2: number.isRequired,
+  cardAttr3: number.isRequired,
+  cardImage: string.isRequired,
+  cardRare: string.isRequired,
+  cardTrunfo: bool.isRequired,
 };

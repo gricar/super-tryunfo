@@ -29,11 +29,21 @@ class Input extends Component {
 
 export default Input;
 
+const { string, number, func } = PropTypes;
+
+Input.defaultProps = {
+  value: 0,
+  type: 'text',
+};
+
 Input.propTypes = {
-  description: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
-  onInputChange: PropTypes.func.isRequired,
-  type: PropTypes.string.isRequired,
-  testid: PropTypes.string.isRequired,
+  description: string.isRequired,
+  name: string.isRequired,
+  value: PropTypes.oneOfType([
+    string,
+    number,
+  ]),
+  onInputChange: func.isRequired,
+  type: string,
+  testid: string.isRequired,
 };

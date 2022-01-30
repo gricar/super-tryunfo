@@ -13,7 +13,7 @@ class Form extends React.Component {
       cardImage,
       cardRare,
       cardTrunfo,
-      // hasTrunfo,
+      hasTrunfo,
       isSaveButtonDisabled,
       onInputChange,
       onSaveButtonClick,
@@ -92,7 +92,6 @@ class Form extends React.Component {
           <select
             name="cardRare"
             id="cardRare"
-            defaultValue=""
             data-testid="rare-input"
             value={ cardRare }
             onChange={ onInputChange }
@@ -103,17 +102,21 @@ class Form extends React.Component {
           </select>
         </label>
 
-        <label htmlFor="cardTrunfo">
-          <input
-            type="checkbox"
-            id="cardTrunfo"
-            name="cardTrunfo"
-            data-testid="trunfo-input"
-            checked={ cardTrunfo }
-            onChange={ onInputChange }
-          />
-          Carta Super Trunfo
-        </label>
+        { hasTrunfo && <p>Você já tem um Super Trunfo em seu baralho</p> }
+
+        { !hasTrunfo && (
+          <label htmlFor="cardTrunfo">
+            <input
+              type="checkbox"
+              id="cardTrunfo"
+              name="cardTrunfo"
+              data-testid="trunfo-input"
+              checked={ cardTrunfo }
+              onChange={ onInputChange }
+            />
+            Carta Super Trunfo
+          </label>
+        )}
 
         <button
           type="submit"
@@ -130,17 +133,19 @@ class Form extends React.Component {
 
 export default Form;
 
+const { string, number, bool, func } = PropTypes;
+
 Form.propTypes = {
-  cardName: PropTypes.string.isRequired,
-  cardDescription: PropTypes.string.isRequired,
-  cardAttr1: PropTypes.string.isRequired,
-  cardAttr2: PropTypes.string.isRequired,
-  cardAttr3: PropTypes.string.isRequired,
-  cardImage: PropTypes.string.isRequired,
-  cardRare: PropTypes.string.isRequired,
-  cardTrunfo: PropTypes.bool.isRequired,
-  // hasTrunfo: PropTypes.bool.isRequired,
-  isSaveButtonDisabled: PropTypes.bool.isRequired,
-  onInputChange: PropTypes.func.isRequired,
-  onSaveButtonClick: PropTypes.func.isRequired,
+  cardName: string.isRequired,
+  cardDescription: string.isRequired,
+  cardAttr1: number.isRequired,
+  cardAttr2: number.isRequired,
+  cardAttr3: number.isRequired,
+  cardImage: string.isRequired,
+  cardRare: string.isRequired,
+  cardTrunfo: bool.isRequired,
+  hasTrunfo: bool.isRequired,
+  isSaveButtonDisabled: bool.isRequired,
+  onInputChange: func.isRequired,
+  onSaveButtonClick: func.isRequired,
 };
