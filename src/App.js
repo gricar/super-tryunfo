@@ -24,6 +24,7 @@ class App extends React.Component {
     this.onSaveButtonClick = this.onSaveButtonClick.bind(this);
     this.enableBtn = this.enableBtn.bind(this);
     this.trunfoCard = this.trunfoCard.bind(this);
+    this.filterCardName = this.filterCardName.bind(this);
   }
 
   onInputChange({ target }) {
@@ -57,6 +58,14 @@ class App extends React.Component {
       packOfCards: packOfCards.filter((card) => card.cardName !== cardName),
     });
     if (cardTrunfo) this.setState({ hasTrunfo: false });
+  }
+
+  filterCardName({ target: { value } }) {
+    const { packOfCards } = this.state;
+    console.log(packOfCards);
+    this.setState({
+      packOfCards: packOfCards.filter(({ cardName }) => cardName.includes(value)),
+    });
   }
 
   enableBtn() {
@@ -123,6 +132,11 @@ class App extends React.Component {
         </section>
 
         <hr />
+        <input
+          type="text"
+          data-testid="name-filter"
+          onChange={ (event) => this.filterCardName(event) }
+        />
         <section className="containerNewCard">
           {
             packOfCards.map((card, index) => (
