@@ -113,18 +113,20 @@ class App extends React.Component {
     return (
       <div>
         <h1>Tryunfo</h1>
-        <Form
-          { ...props }
-          onInputChange={ this.onInputChange }
-          onSaveButtonClick={ this.onSaveButtonClick }
-        />
+        <section className="containerNewCard">
+          <Form
+            { ...props }
+            onInputChange={ this.onInputChange }
+            onSaveButtonClick={ this.onSaveButtonClick }
+          />
+          <Card { ...props } />
+        </section>
+
         <hr />
-        <Card { ...props } />
-        <hr />
-        <section>
+        <section className="containerNewCard">
           {
             packOfCards.map((card, index) => (
-              <div key={ index }>
+              <div key={ index } className="cardBaralho">
                 <Card
                   cardName={ card.cardName }
                   cardDescription={ card.cardDescription }

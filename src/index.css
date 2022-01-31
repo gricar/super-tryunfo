@@ -2,47 +2,24 @@
 
 body {
   font-family: 'Spartan', sans-serif;
+  background-color: rgba(65, 48, 31, 0.8);
 }
 
 h1 {
   text-align: center;
   color: white;
   margin: auto;
-  background-color: rgba(30, 136, 30, 0.644);
+  background-color: #ca6702;
   width: 30vw;
-  border: 1px solid green;
+  border: 2px solid #e9d8a6;
   border-radius: 10px;
-  padding: 20px 0;
+  padding: 15px 0;
 }
 
-.cardForm {
+.containerNewCard {
   display: flex;
-  flex-direction: column;
-  width: 40vw;
-  height: auto;
-  color: #001219;
-  background-color: #e9d8a6;
-  border: 1px solid #ca6702;
-  border-radius: 10px;
-  margin: 10px 5px;
-  padding: 15px;
-}
-
-.cardForm input, select {
-  padding: 5px;
-  margin: 8px 0;
-  border: none;
-  border-bottom: 1px solid rgb(100, 100, 100);
-  background-color: #e9d8a6;
-  width: 90%;
-  font-size: 2vh;
-}
-
-
-h2 {
-  font-size: 3.3vh;
-  font-weight: 700;
-  padding-bottom: 3vh;
+  justify-content: space-around;
+  flex-wrap: wrap;
 }
 
 .formInput {
@@ -53,56 +30,13 @@ h2 {
   padding: 5px 0;
 }
 
-textarea {
-  padding: 5px;
-  margin: 8px 0;
-  border: none;
-  border-bottom: 1px solid rgb(100, 100, 100);
-  background-color: #e9d8a6;
-  width: 90%;
-  height: 8vh;
-}
-
-.cardAttr1, .cardAttr2, .cardAttr3, .cardImage {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
-.cardAttr1 input, .cardAttr2 input, .cardAttr3 input {
-  flex-basis: 10%;
-  margin-left: 10%;
-}
-
-.checkInput {
-  display: flex;
-  flex-direction: row-reverse;
-  font-size: 2.3vh;
-  font-weight: 550;
-  align-items: center;
-}
-
-input[type=checkbox] {
+input[ type = 'checkbox' ] {
   cursor: pointer;
-  flex-basis: 50%;
+  flex-basis: 40%;
 }
 
-button {
-  width: 50%;
-  background-color: #ca6702;
-  color: white;
-  padding: 14px 20px;
-  font-size: 2.3vh;
-  font-weight: 550;
-  margin: 15px auto;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-button:hover {
-  opacity: 0.7;
-  border-radius: 12px;
-  transition: 0.3s;
+.cardBaralho {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }

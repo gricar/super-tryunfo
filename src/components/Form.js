@@ -1,3 +1,4 @@
+import './Form.css';
 import React from 'react';
 import PropTypes from 'prop-types';
 import Input from './Input';
@@ -31,7 +32,7 @@ class Form extends React.Component {
     };
 
     return (
-      <form className="cardForm">
+      <form className="card">
         <h2>Adicionar nova carta</h2>
         <Input
           description="Nome"
@@ -104,7 +105,7 @@ class Form extends React.Component {
 
         {
           hasTrunfo
-            ? <p>Você já tem um Super Trunfo em seu baralho</p>
+            ? <p className="cardTrunfo">Você já tem um Super Trunfo em seu baralho</p>
             : (
               <label htmlFor="cardTrunfo" className="checkInput">
                 <input
