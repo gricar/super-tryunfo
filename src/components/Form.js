@@ -31,7 +31,7 @@ class Form extends React.Component {
     };
 
     return (
-      <form>
+      <form className="cardForm">
         <h2>Adicionar nova carta</h2>
         <Input
           description="Nome"
@@ -41,7 +41,7 @@ class Form extends React.Component {
           onInputChange={ onInputChange }
         />
 
-        <label htmlFor="cardDescription">
+        <label htmlFor="cardDescription" className="formInput">
           Descrição
           <textarea
             id="cardDescription"
@@ -87,7 +87,7 @@ class Form extends React.Component {
           onInputChange={ onInputChange }
         />
 
-        <label htmlFor="cardRare">
+        <label htmlFor="cardRare" className="formInput">
           Raridade:
           <select
             name="cardRare"
@@ -106,7 +106,7 @@ class Form extends React.Component {
           hasTrunfo
             ? <p>Você já tem um Super Trunfo em seu baralho</p>
             : (
-              <label htmlFor="cardTrunfo">
+              <label htmlFor="cardTrunfo" className="checkInput">
                 <input
                   type="checkbox"
                   id="cardTrunfo"

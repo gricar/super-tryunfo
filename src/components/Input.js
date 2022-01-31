@@ -12,7 +12,7 @@ class Input extends Component {
       testid,
     } = this.props;
     return (
-      <label htmlFor={ name }>
+      <label htmlFor={ name } className={ `${name} formInput` }>
         { description }
         <input
           type={ type }
