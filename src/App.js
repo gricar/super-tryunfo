@@ -25,6 +25,7 @@ class App extends React.Component {
     this.enableBtn = this.enableBtn.bind(this);
     this.trunfoCard = this.trunfoCard.bind(this);
     this.filterCardName = this.filterCardName.bind(this);
+    this.filterRareCard = this.filterRareCard.bind(this);
   }
 
   onInputChange({ target }) {
@@ -62,9 +63,16 @@ class App extends React.Component {
 
   filterCardName({ target: { value } }) {
     const { packOfCards } = this.state;
-    console.log(packOfCards);
     this.setState({
       packOfCards: packOfCards.filter(({ cardName }) => cardName.includes(value)),
+    });
+  }
+
+  filterRareCard({ target: { value } }) {
+    const { packOfCards } = this.state;
+    // if (value === 'todas') this.setState((prevState) => ({packOfCards: [...prevState.packOfCards]}));
+    this.setState({
+      packOfCards: packOfCards.filter(({ cardRare }) => cardRare === value),
     });
   }
 
@@ -132,11 +140,29 @@ class App extends React.Component {
         </section>
 
         <hr />
-        <input
-          type="text"
-          data-testid="name-filter"
-          onChange={ (event) => this.filterCardName(event) }
-        />
+        <section>
+          <input
+            type="text"
+            data-testid="name-filter"
+            onChange={ (event) => this.filterCardName(event) }
+          />
+
+          <label htmlFor="cardRareSearch">
+            Raridade:
+            <select
+              name="cardRare"
+              id="cardRareSearch"
+              defaultValue="todas"
+              data-testid="rare-filter"
+              onChange={ (event) => this.filterRareCard(event) }
+            >
+              <option value="todas">todas</option>
+              <option value="normal">normal</option>
+              <option value="raro">raro</option>
+              <option value="muito raro">muito raro</option>
+            </select>
+          </label>
+        </section>
         <section className="containerNewCard">
           {
             packOfCards.map((card, index) => (
