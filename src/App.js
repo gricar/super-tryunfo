@@ -70,10 +70,13 @@ class App extends React.Component {
 
   filterRareCard({ target: { value } }) {
     const { packOfCards } = this.state;
-    // if (value === 'todas') this.setState((prevState) => ({packOfCards: [...prevState.packOfCards]}));
-    this.setState({
-      packOfCards: packOfCards.filter(({ cardRare }) => cardRare === value),
-    });
+    if (value === 'todas') {
+      this.setState({ packOfCards: packOfCards.map((card) => card) });
+    } else {
+      this.setState({
+        packOfCards: packOfCards.filter(({ cardRare }) => cardRare === value),
+      });
+    }
   }
 
   enableBtn() {
