@@ -17,6 +17,7 @@ class App extends React.Component {
       isSaveButtonDisabled: true,
       hasTrunfo: false,
       packOfCards: [],
+      trunfoSearch: false,
     };
 
     this.onInputChange = this.onInputChange.bind(this);
@@ -26,6 +27,7 @@ class App extends React.Component {
     this.trunfoCard = this.trunfoCard.bind(this);
     this.filterCardName = this.filterCardName.bind(this);
     this.filterRareCard = this.filterRareCard.bind(this);
+    this.filterTrunfoCard = this.filterTrunfoCard.bind(this);
   }
 
   onInputChange({ target }) {
@@ -79,6 +81,14 @@ class App extends React.Component {
     }
   }
 
+  filterTrunfoCard({ target: { checked } }) {
+    const { packOfCards, trunfoSearch } = this.state;
+    this.setState({
+      packOfCards: packOfCards.filter(({ cardTrunfo }) => cardTrunfo === checked),
+      trunfoSearch: !trunfoSearch,
+    });
+  }
+
   enableBtn() {
     const atr1Int = parseInt(cardAttr1.value, 10);
     const atr2Int = parseInt(cardAttr2.value, 10);
@@ -116,6 +126,7 @@ class App extends React.Component {
       hasTrunfo,
       isSaveButtonDisabled,
       packOfCards,
+      trunfoSearch,
     } = this.state;
 
     const props = {
@@ -144,11 +155,15 @@ class App extends React.Component {
 
         <hr />
         <section>
-          <input
-            type="text"
-            data-testid="name-filter"
-            onChange={ (event) => this.filterCardName(event) }
-          />
+          <label htmlFor="filterCard">
+            <input
+              type="text"
+              id="filterCard"
+              data-testid="name-filter"
+              disabled={ trunfoSearch }
+              onChange={ (event) => this.filterCardName(event) }
+            />
+          </label>
 
           <label htmlFor="cardRareSearch">
             Raridade:
@@ -157,13 +172,23 @@ class App extends React.Component {
               id="cardRareSearch"
               defaultValue="todas"
               data-testid="rare-filter"
-              onChange={ (event) => this.filterRareCard(event) }
+              disabled={ trunfoSearch }
+              onClick={ (event) => this.filterRareCard(event) }
             >
               <option value="todas">todas</option>
               <option value="normal">normal</option>
               <option value="raro">raro</option>
               <option value="muito raro">muito raro</option>
             </select>
+          </label>
+          <label htmlFor="TrunfoFilter">
+            <input
+              type="checkbox"
+              id="TrunfoFilter"
+              data-testid="trunfo-filter"
+              onChange={ (event) => this.filterTrunfoCard(event) }
+            />
+            Super Trunfo
           </label>
         </section>
         <section className="containerNewCard">
